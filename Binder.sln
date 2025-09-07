@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Binder", "Binder\Binder.csproj", "{E55F5EA7-22DB-4046-9173-B62DF0E98300}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F1539EAC-C67D-4643-B6DB-9C875D274AD0}"
+	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
+		Directory.Build.targets = Directory.Build.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E55F5EA7-22DB-4046-9173-B62DF0E98300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55F5EA7-22DB-4046-9173-B62DF0E98300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55F5EA7-22DB-4046-9173-B62DF0E98300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55F5EA7-22DB-4046-9173-B62DF0E98300}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
