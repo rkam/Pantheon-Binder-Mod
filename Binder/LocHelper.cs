@@ -1,4 +1,5 @@
 #if !UNIT_TESTS
+using MelonLoader;
 using UnityEngine;
 #endif
 
@@ -28,7 +29,7 @@ class LocHelper : LocBuilder
 
         if (!Bindpoint.VerifyName(bindname))
         {
-            Globals._gre($"Invalid bind name '{bindname}'");
+            MelonLogger.Msg($"Invalid bind name '{bindname}'");
             Utils.EchoToChat("BinderMod: Invalid name - must be alpha-numeric.");
             return null;
         }
@@ -61,7 +62,7 @@ class LocHelper : LocBuilder
 
         if (!Bindpoint.VerifyName(zonename))
         {
-            Globals._gre($"Invalid zone name '{zonename}'");
+            MelonLogger.Msg($"Invalid zone name '{zonename}'");
             Utils.EchoToChat("BinderMod: Invalid zone - must be alpha-numeric.");
             return null;
         }
@@ -151,7 +152,7 @@ class LocHelper : LocBuilder
             default: break;
         }
 
-        Globals._gra($"Found {foundS.Length} bindstones for '{bn}'");
+        MelonLogger.Msg($"Found {foundS.Length} bindstones for '{bn}'");
         return (true, null, foundZ);
     }
 
@@ -196,7 +197,7 @@ class LocHelper : LocBuilder
             default: break;
         }
 
-        Globals._gra($"Found {foundS.Length} matches in '{foundZ.Name}' for '{bn}'");
+        MelonLogger.Msg($"Found {foundS.Length} Bindstone matches in '{foundZ.Name}' for '{bn}'");
 
         // Found the zone, but there are several bindstones within the zone.
         // So, create a bind for with that name and the zone.

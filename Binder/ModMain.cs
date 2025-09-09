@@ -1,14 +1,11 @@
-#if UNIT_TESTS
-namespace Binder;
-public class MelonMod { }
-#else
+#if !UNIT_TESTS
 using Il2CppPantheonPersist;
 using Il2CppTMPro;
 using MelonLoader;
 using UnityEngine;
+#endif
 
 namespace Binder;
-#endif
 
 /// <summary>
 /// Main mod class that handles remembering the location of a player's last
@@ -63,7 +60,7 @@ public class ModMain : MelonMod
         if (loc == null)
         {
             // Since they just bound, what we had is invalid
-            Globals.Warn($"Cannot find current location.");
+            MelonLogger.Warning($"Cannot find current location.");
             Utils.EchoToChat("BinderMod: Cannot find current location - clearing last bind location");
 
             Globals.PPrefs!.SetBind(new Bindpoint()); // This will also set current zone, if it can.
@@ -82,7 +79,7 @@ public class ModMain : MelonMod
         var x = (float)Math.Round(loc.X, 2);
         var y = (float)Math.Round(loc.Y, 2);
 
-        Globals._cya("Unrecognized bindstone for current location.");
+        MelonLogger.Msg(System.ConsoleColor.Cyan, $"Unrecognized bindstone for current location.");
         Globals.PPrefs!.SetBind(new Bindpoint(loc, false));
 
         return SaveAndDisplayBindPoint(true);
@@ -232,7 +229,7 @@ public class ModMain : MelonMod
     void ShowInHUD(string displayText)
     {
 #if UNIT_TESTS
-        Globals._gre($"HUD: {displayText}");
+        Log.gre($"HUD: {displayText}");
 #else
         try
         {
@@ -246,7 +243,7 @@ public class ModMain : MelonMod
         catch (Exception e)
         {
             // Silently handle any errors
-            Globals.Warn("Cannot update bind window: " + e.ToString());
+            MelonLogger.Warning("Cannot update bind window: " + e.ToString());
         }
 #endif
     }

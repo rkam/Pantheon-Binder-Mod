@@ -1,3 +1,7 @@
+#if !UNIT_TESTS
+using MelonLoader;
+#endif
+
 namespace Binder;
 
 /// <summary>

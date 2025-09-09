@@ -57,21 +57,21 @@ internal class PlayerPrefs
             return null;
         }
 
-        Globals._cya($"GetBind({bp.Name}, {bp.Zonename} [ t: {bp.IsTrainer}, u: {bp.IsUserName}, r: {bp.IsRealZone}) ]");
+        MelonLogger.Msg(ConsoleColor.Green, $"GetBind({bp.Name}, {bp.Zonename} [ t: {bp.IsTrainer}, u: {bp.IsUserName}, r: {bp.IsRealZone}) ]");
         bindpoint = bp;
         return bindpoint;
     }
 
     internal void SetBind(Bindpoint bp)
     {
-        Globals._cya($"SetBind({bp.Name}, {bp.Zonename} [ t: {bp.IsTrainer}, u: {bp.IsUserName}, r: {bp.IsRealZone}) ]");
+        MelonLogger.Msg(ConsoleColor.Green, $"SetBind({bp.Name}, {bp.Zonename} [ t: {bp.IsTrainer}, u: {bp.IsUserName}, r: {bp.IsRealZone}) ]");
         bindpoint = bp;
     }
 
     internal void SaveToFile(bool showMessage)
     {
         var prefs = bindpoint.ToPrefs();
-        if (showMessage) { Globals._gra($"Player Bindpoints Saved to {_Path}"); }
+        if (showMessage) { MelonLogger.Msg($"Player Bindpoints Saved to {_Path}"); }
         File.WriteAllText(_Path, prefs);
     }
 
@@ -91,7 +91,7 @@ internal class PlayerPrefs
             appData = "";
 #if !UNIT_TESTS
             // No idea where this will be or if writeable. Can't really happen though.
-            Globals.Warn("Environment['APPDATA'] does not exist!? Config dir located in: .");
+            MelonLogger.Warning("Environment['APPDATA'] does not exist!? Config dir located in: .");
 #endif
         }
 

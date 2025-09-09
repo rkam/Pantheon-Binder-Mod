@@ -35,7 +35,7 @@ class Utils
     {
 #if UNIT_TESTS
         UnitTests.lastChat = displayText;
-        Globals._gre($"Chat[{channel}]: {displayText}");
+        Log.gre($"Chat[{channel}]: {displayText}");
 #else
         if (UIChatWindows.Instance == null ||
             UIChatWindows.Instance.mainWindow == null ||

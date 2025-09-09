@@ -1,4 +1,7 @@
 using System.Text.RegularExpressions;
+#if !UNIT_TESTS
+using MelonLoader;
+#endif
 
 namespace Binder;
 
@@ -244,7 +247,6 @@ class Bindpoint
         Match m = r.Match(input);
         if (!m.Success)
         {
-//Globals._whi($"#{pat}# | #{input}# ==> NIL");
             return null;
         }
 
@@ -279,13 +281,11 @@ new DictSS { { "n", "Zonename" },    { "p", $"^Zonename *= *\"({_NM_REPAT})\"$" 
             {
                 string name = h["n"];
                 string pat = h["p"];
-//Globals._whi($"{s} | .StartsWith {name}: | {s.StartsWith(name)}");
                 if (s.StartsWith(name))
                 {
                     try
                     {
                         var v = _ParsePrefLine(s, pat);
-//Globals._whi($"{pat} | -> '{v}'");
                         switch (name)
                         {
                             case "Name": bindname = v; break;
@@ -294,7 +294,7 @@ new DictSS { { "n", "Zonename" },    { "p", $"^Zonename *= *\"({_NM_REPAT})\"$" 
                     }
                     catch (Exception e)
                     {
-                        Globals.Warn("Regex timed out (invalid bind config file?): " + e.ToString());
+                        MelonLogger.Warning("Regex timed out (invalid bind config file?): " + e.ToString());
                         Utils.EchoToChat("BinderMod: Invalid bindpoint in config file. Clearing it. You will need to re-bind or use /xxbindset-name-zone.");
                         return null;
                     }
@@ -306,12 +306,8 @@ new DictSS { { "n", "Zonename" },    { "p", $"^Zonename *= *\"({_NM_REPAT})\"$" 
         Bindpoint? bp = FromPrefs(bindname, zonename);
         if (bp == null)
         {
-            Globals.Warn($"File parse failed (bind: '{bindname}', zone: '{zonename}')");
+            MelonLogger.Warning($"File parse failed (bind: '{bindname}', zone: '{zonename}')");
             Utils.EchoToChat("BinderMod: Cannot parse bindpoint in config file. Clearing it. You will need to re-bind or use /xxbindset-name-zone.");
-        }
-        else
-        {
-            Globals._cya($"LOADED FROM FILE: {bp.Name}, {bp.Zonename} [ t: {bp.IsTrainer}, u: {bp.IsUserName}, r: {bp.IsRealZone} ]");
         }
 
         return bp;
@@ -397,7 +393,7 @@ new DictSS { { "n", "Zonename" },    { "p", $"^Zonename *= *\"({_NM_REPAT})\"$" 
         }
         catch (Exception e)
         {
-            Globals.Warn("Regex timed out: " + e.ToString());
+            MelonLogger.Warning("Regex timed out: " + e.ToString());
             Utils.EchoToChat("BinderMod: Internal Error (regex timeout).");
         }
         return false;
