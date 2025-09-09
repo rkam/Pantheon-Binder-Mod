@@ -36,7 +36,7 @@ class Bindpoint
             return;
         }
 #else
-        if (Globals.compassPanel == null)       // This happens early on before we've setup
+        if (Globals.CompassPanel == null)       // This happens early on before we've setup
         {
             return;
         }

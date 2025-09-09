@@ -14,5 +14,5 @@ static class Globals
 
     internal static PlayerPrefs? PPrefs = null;                  // Per-player prefs
 
-    internal static Transform? compassPanel = null;              // for zone name
+    internal static Transform? CompassPanel = null;              // for zone name
 }

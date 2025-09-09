@@ -253,10 +253,10 @@ public class ModMain : MelonMod
     /// Creates the Bindpoint display UI element below the compass.
     ///   Accomodates known mods that also display below the compass.
     /// </summary>
-    /// <param name="compassPanel">The compass panel transform to attach the text to</param>
-    internal void CreateBoundAtDisplay(Transform compassPanel)
+    /// <param name="CompassPanel">The compass panel transform to attach the text to</param>
+    internal void CreateBoundAtDisplay(Transform CompassPanel)
     {
-        Globals.compassPanel = compassPanel;
+        Globals.CompassPanel = CompassPanel;
         // Always create.  We will show/hide it based on _inHUD
         CreateTextualDisplay(Globals.PPrefs?.bindpoint.HudText(_terse) ?? "");
         _onHUDChanged();
@@ -329,7 +329,7 @@ public class ModMain : MelonMod
         }
 
         // Default parent is the compass panel
-        var parentTransform = Globals.compassPanel;
+        var parentTransform = Globals.CompassPanel;
         // Default position: 5 units below the compass (matches server name mod default)
         var anchoredPosition = new Vector2(0, -7);
 
@@ -346,13 +346,13 @@ public class ModMain : MelonMod
         if (hasTimeMod || hasServerMod)
         {
             var yoff = 0;
-            var parentToBe = Globals.compassPanel!;
+            var parentToBe = Globals.CompassPanel!;
 
             // Try to find the server name text object as a child of the compass panel
 
             if (hasServerMod)
             {
-                var serverObj = Globals.compassPanel!.Find(serverPanelName);
+                var serverObj = Globals.CompassPanel!.Find(serverPanelName);
                 yoff -= 18;
                 if (serverObj != null)
                 {

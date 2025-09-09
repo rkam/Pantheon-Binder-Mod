@@ -215,7 +215,7 @@ class LocHelper : LocBuilder
         var areaPlayerIsIn = Globals.LocalPlayer?.info.compassArea;
 #else
         // Compass->Child(LocationNameDisply)->Child("Text (TMP)")->Component("Il2CppTMPro.TextMeshProUGUI").m_text ==> "The Village of Availia"
-        UnityEngine.Transform? locationNameDisplay = Globals.compassPanel!.Find("LocationNameDisplay");
+        UnityEngine.Transform? locationNameDisplay = Globals.CompassPanel!.Find("LocationNameDisplay");
 
         Transform? textChild = locationNameDisplay?.GetChild(1);        // "Text (TMP)" [ Child[0] == Background ]
 
