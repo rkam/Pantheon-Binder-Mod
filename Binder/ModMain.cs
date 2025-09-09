@@ -253,10 +253,10 @@ public class ModMain : MelonMod
     /// Creates the Bindpoint display UI element below the compass.
     ///   Accomodates known mods that also display below the compass.
     /// </summary>
-    /// <param name="CompassPanel">The compass panel transform to attach the text to</param>
-    internal void CreateBoundAtDisplay(Transform CompassPanel)
+    /// <param name="compassPanel">The compass panel transform to attach the text to</param>
+    internal void CreateBoundAtDisplay(Transform compassPanel)
     {
-        Globals.CompassPanel = CompassPanel;
+        Globals.CompassPanel = compassPanel;
         // Always create.  We will show/hide it based on _inHUD
         CreateTextualDisplay(Globals.PPrefs?.bindpoint.HudText(_terse) ?? "");
         _onHUDChanged();
