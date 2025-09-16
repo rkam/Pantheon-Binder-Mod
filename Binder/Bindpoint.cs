@@ -23,7 +23,7 @@ class Bindpoint
     //    ' needed for "Wild's End".
     //    @ , and >< needed for "Unknown stone @ <x, y>".
     //    ? and ?? represent unknown bind.
-    //          (TODO: writing Unknown to file reduces messages -- desired?)
+    //      (TODO: writing Unknown BP to file reduces messages (not bound, etc) -- desired?)
     private static readonly string _NM_REPAT = "([0-9a-zA-Z_ ?'@<,>]+)";
 
     /// <summary>

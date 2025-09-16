@@ -13,53 +13,56 @@ class LocInfo
 
     static LocInfo()
     {
-
-        // -------------------------------------------------------------------------
-        //              zonename                compassname          key
+        // ZONES ---------------------------------------------------------------
+        //                 zonename                key
         ZoneInfo = new ZoneEntry[] {
-         new ZoneEntry("Thronefast",            "Thronefast",        "TF"),
-         new ZoneEntry("Avendyr's Pass",        "AvendyrsPass",      "AVP"),
-         new ZoneEntry("Eastern Plains",        "EasternPlains",     "EP"),
-         new ZoneEntry("Silent Plains",         "SilentPlains",      "SP"),
-         new ZoneEntry("Wild's End",            "WildsEnd",          "WE"),
+            new ZoneEntry("Thronefast",            "TF"),
+            new ZoneEntry("Avendyr's Pass",        "AVP"),
+            new ZoneEntry("Eastern Plains",        "EP"),
+            new ZoneEntry("Silent Plains",         "SP"),
+            new ZoneEntry("Wilds End",             "WE"),
 
-         new ZoneEntry("Halnir Cave",           "HalnirCave",        "HC"),
-         new ZoneEntry("Hangore",               "Hangore",           "HG"),      // Compass: ???  ##TODO: Zone?
-         new ZoneEntry("Mad Run",               "MadRun",            "MR"),      // Compass: ???  ##TODO: Zone? na-Area?
-         new ZoneEntry("Black Rose Keep",       "BlackRoseKeep",     "BRK"),     // Compass: ???  ##TODO: Zone? na-Area?
+            new ZoneEntry("Halnir Cave",           "HC"),
+            new ZoneEntry("Black Rose Keep",       "BRK"),
 
-//       new ZoneEntry("Faerthale",             "Faerthale",         "FT"),
-//       new ZoneEntry("Badia de Cara",         "BadiadeCara",       "BC"),
-         new ZoneEntry("Ashbreather Enclave",   "AshbreatherEnclave","ASH"),     // Compass: ???  ##TODO: Zone? na-Area?
-//       new ZoneEntry("Knightwolf Knoll",      "KnightwolfKnoll",   "KWK"),     // Compass: ???  ##TODO: Zone? na-Area?
+         // Announced ("as glimpse into next major zone") 250909 (Black Rose Keep release post)
+//          new ZoneEntry("Badia de Cara",         "BC"),
+
+         // City/Zone on Shalazam map - announced sometime pre-EA
+//          new ZoneEntry("Faerthale",             "FT"),
     };
 
-        // -------------------------------------------------------------------------
-        //      fullname                   displayname        compassname,         key    zonekey
+        // TOWNS / AREAS -------------------------------------------------------
+        //      fullname              displayname       key     zonekey
         TownInfo = new TownEntry[] {
-new TownEntry("The Village of Availia",     "Availia",           null,             "VOA",  "TF"),
-new TownEntry("The Barrowdark",             "Barrowdark",        null,             "BAR",  "TF"),
-new TownEntry("Demith",                     "Demith",            null,             "DEM",  "AVP"),
-new TownEntry("Sorhiryth",                  "Sorhiryth",         null,             "SOR",  "WE"),  // ##TODO: verify
+new TownEntry("The Village of Availia", "Availia",      "VOA",    "TF"),
+new TownEntry("The Barrowdark",         "Barrowdark",   "BAR",    "TF"),
+new TownEntry("The Crossroads",         "Crossroads",   "XRD",    "TF"),
+new TownEntry("Demith",                 null,           "DEM",    "AVP"),
 
-new TownEntry("Arcanary",                   "Arcanary",          null,             "ARC",  "TF"),  // NOTE: does not show up below Compass (shows Thronefast)
-new TownEntry("Thronefast City",            "Thronefast City",   "ThronefastCity", "TFC",  "TF"),  // ##TODO: verify exist?
-
-new TownEntry("Skydurbin",                  "Skydurbin",         null,             "SKYD", "SP"),  // ##TODO: verify
-new TownEntry("Kingswatch",                 "Kingswatch",        null,             "KING", "EP"),  // ##TODO: verify
-new TownEntry("Port of Ru'lun",             "Port of Ru'lun",    "PortofRulun",    "PORT", "SP"),  // ##TODO: verify
+        // NOTE: these do NOT show up below Compass (shows Thronefast, etc.)
+        //       (could remove, but there's a chance they could add them, so leave for now)
+new TownEntry("Sorhiryth",              null,           "SOR",    "WE"),
+new TownEntry("Arcanary",               null,           "ARC",    "TF"),
+new TownEntry("Skydurbin",              null,           "SKYD",   "SP"),
+new TownEntry("Kingswatch",             null,           "KING",   "EP"),
+new TownEntry("Port of Ru'lun",         null,           "PORT",   "SP"),
+new TownEntry("Ashbreather Enclave",    null,           "ASH",    "SP"),
 
 /*
       // Inaccessible
-new TownEntry("Lo'thale",                   "Lo'thale",          "Lothale",        "LOTH", "FT"),
-new TownEntry("Faerthale City",             "Faerthale City",    "FaerthaleCity",  "FAER", "FT"),
+new TownEntry("Kosa Ull",               null,           "KOSA",   "BC"),   // POST 1st mention: 250909
 
-      // Inaccessible - before player fully loaded. Not seen in actual game.
-new TownEntry("The Even Darker Barrowdark", "Darker Barrowdark", null,             "EDBD", "TF"),
+new TownEntry("Thronefast City",        null,           "TFC",    "TF"),   // on MAP, pre-EA
+new TownEntry("Lo'thale",               null,           "LOTH",   "FT"),   // on MAP, pre-EA
+new TownEntry("Faerthale City",         null,           "FAER",   "FT"),   // on MAP, pre-EA
+
+      // Inaccessible -- before player fully loaded. Not seen in actual game.
+new TownEntry("The Even Darker Barrowdark", "Darker Barrowdark", null, "EDBD", "TF"),
 */
     };
 
-        // -------------------------------------------------------------------------
+        // BINDSTONES -------------------------------------------------------------
         //                  name,         zonekey
         BindInfo = new BindEntry[] {
             new BindEntry("Availia",          "TF",  x: 3357f, z: 497f, y:  3784f),

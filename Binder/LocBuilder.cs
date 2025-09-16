@@ -10,13 +10,11 @@ namespace Binder;
 internal class ZoneEntry
 {
     internal string ZoneName;
-    internal string CompassName;
     internal string Key;
 
-    internal ZoneEntry(string zoneName, string compassName, string key)
+    internal ZoneEntry(string zoneName, string key)
     {
         ZoneName = zoneName;
-        CompassName = compassName;
         Key = key;
     }
 }
@@ -28,15 +26,13 @@ internal class TownEntry
 {
     internal string Fullname;
     internal string Displayname;
-    internal string CompassName;
     internal string Key;
     internal string ZoneKey;
 
-    internal TownEntry(string fullName, string displayName, string? compassName, string key, string zoneKey)
+    internal TownEntry(string fullName, string? displayName, string key, string zoneKey)
     {
         Fullname = fullName;
-        Displayname = displayName;
-        CompassName = compassName ?? fullName;
+        Displayname = displayName ?? fullName;
         Key = key;
         ZoneKey = zoneKey;
     }
@@ -98,27 +94,27 @@ class LocBuilder
         List<CompassArea> compassAreas = new List<CompassArea>();
         List<Bindstone> bindstones = new List<Bindstone>();
 
-        foreach (ZoneEntry z in LocInfo.ZoneInfo)   // zonename, compassname, key
+        foreach (ZoneEntry z in LocInfo.ZoneInfo)   // zonename, key
         {
             var zone = new Zone(z.ZoneName, z.Key);
             zoneHash[z.Key] = zone;
             zones.Add(zone);
 
-            var compass = new CompassArea(z.CompassName, zone);
+            var compass = new CompassArea(z.ZoneName, zone);
             compHash[z.Key] = compass;
             compassAreas.Add(compass);
 
             zoneBindHash[z.Key] = new List<Bindstone>();
         }
 
-        foreach (TownEntry t in LocInfo.TownInfo)    // fullname, displayname, compassname, key, zonekey
+        foreach (TownEntry t in LocInfo.TownInfo)    // fullname, displayname, key, zonekey
         {
             var zone = zoneHash[t.ZoneKey];
             var town = new Town(t.Fullname, t.Displayname, zone);
             townHash[t.Key] = town;
             towns.Add(town);
 
-            var compass = new CompassArea(t.CompassName, town);
+            var compass = new CompassArea(t.Fullname, town);
             compHash[t.Key] = compass;
             compassAreas.Add(compass);
         }
