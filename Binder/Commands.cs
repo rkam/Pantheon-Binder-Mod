@@ -7,7 +7,7 @@ namespace Binder;
 
 class Commands
 {
-    internal static bool CheckForCommands(string name, ref string message, ChatChannelType channel)
+    internal static bool CheckForBound(string name, ref string message, ChatChannelType channel)
     {
 
         // "You are now bound to this stone!"
@@ -20,50 +20,42 @@ class Commands
             return true;
         }
 
-        if (message.StartsWith("Unknown command 'xxbind"))
+        return true;
+    }
+
+    internal static bool CheckForCommands(string message, ChatChannelType channel)
+    {
+        var cmd = Regex.Replace(message, "^/xxbind(.*)", "$1");
+
+        var msg = message;
+        switch (cmd)
         {
-            var cmd = Regex.Replace(message, "^.*xxbind(.*)'.*", "$1");
+            case "info":
+                ModMain.Instance?.HandleBindInfoCommand(cmd, channel);
+                break;
 
-            var msg = message;
-            switch (cmd)
-            {
-                case "info":
-                    msg = ModMain.Instance?.HandleBindInfoCommand(cmd, channel);
-                    break;
+            case "load":
+                ModMain.Instance?.HandleBindLoadCommand(cmd, channel);
+                break;
 
-                case "load":
-                    ModMain.Instance?.HandleBindLoadCommand(cmd, channel);
-                    break;
+            case "terse":
+            case "hud":
+            case "chat":
+            case "login":
+                ModMain.Instance?.HandleBindToggleCommand(cmd, channel);
+                break;
 
-                case "terse":
-                case "hud":
-                case "chat":
-                case "login":
-                    msg = ModMain.Instance?.HandleBindToggleCommand(cmd, channel);
-                    if (msg == null)    // not recognized
-                    {
-                        return true;                     // not recognized
-                    }
-                    break;
+            default:
+                if (!cmd.StartsWith("set-"))      // "set-.*'."
+                {
+                    return true;                     // not recognized
+                }
 
-                default:
-                    if (!cmd.StartsWith("set-"))      // "set-.*'."
-                    {
-                        return true;                     // not recognized
-                    }
-
-                    msg = ModMain.Instance?.HandleBindSetCommand(cmd, channel);
-                    if (msg == null)    // not recognized
-                    {
-                        return true;
-                    }
-                    break;
-            }
-
-            // We reach here only if we handled the message.
-            return false;
+                ModMain.Instance?.HandleBindSetCommand(cmd, channel);
+                break;
         }
 
-        return true;
+        // We reach here only if we handled the message.
+        return false;
     }
 }

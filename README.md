@@ -131,9 +131,8 @@ A final note is that the term Zone as used by the mod is not always an actual zo
 - If you play the game without running the mod and you bind, this mod will show the old bind location until you bind again.
 - The mod supports multiple installed games (multiple accounts).- If you have multiple accounts and log into VR with one, but then log into the game itself with a different account (second login from Desktop), then the the bind will be correct.
 
-- The mod commands take advantage of the **Invalid Command** behaviour of the game.
-    A side effect of this is that the sometimes the chat-mode gets changed (e.g. if you had it set to /group, it might be set to /whisper). This will only happen when commands are used, so it's not intrusive and easily fixed.
-    - Also, this limits the characters that can be used in the bindpoint.  Additionally, for simplicity, valid chars are further limited to alphanumeric and a few others, including **_**, **@**, **?**, and **,** .
+    Sometimes the chat-mode gets changed (e.g. if you had it set to /group, it might be set to /whisper). This will only happen when commands are used, so it's not intrusive and easily fixed.
+    Valid chars are limited to alphanumeric and a few others, including **_**, **@**, **?**, **,** and space.
     - **Hint:** A good way to manually set a bind, if you might know, but unsure is to do **/xxsetbind-?demith**.  The **?** ensures it won't match the bindstone itself, while conveying the info.
 
 ## Issues

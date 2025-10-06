@@ -88,11 +88,10 @@ public class ModMain : MelonMod
     /// <summary>
     /// Called when the user types xxbindinfo - will show the current bind.
     /// </summary>
-    internal string HandleBindInfoCommand(string cmd, ChatChannelType channel)
+    internal void HandleBindInfoCommand(string cmd, ChatChannelType channel)
     {
         var s = Globals.PPrefs!.bindpoint.ChatText(false);
         Utils.EchoToChat(s);
-        return "";
     }
 
     /// <summary>
@@ -117,7 +116,7 @@ public class ModMain : MelonMod
     ///     the same as if a new character was created.
     ///   Otherwise, just sets to "xx" (in "yy")
     /// </summary>
-    internal string? HandleBindSetCommand(string cmd, ChatChannelType channel)
+    internal void HandleBindSetCommand(string cmd, ChatChannelType channel)
     {
 
         // [xxbind]set-name-zone
@@ -126,20 +125,18 @@ public class ModMain : MelonMod
         var bp = LocHelper.BindpointFor(a);
         if (bp == null)
         {
-            return null;
+            return;
         }
         Globals.PPrefs!.SetBind(bp!);
 
         var s = SaveAndDisplayBindPoint(false, true);
         Utils.EchoToChat(s);
-
-        return "";      // valid command and we showed message, so return ""
     }
 
     /// <summary>
     /// Called when the user types xxbind{an-option} - toggles the option
     /// </summary>
-    internal string? HandleBindToggleCommand(string option, ChatChannelType channel)
+    internal void HandleBindToggleCommand(string option, ChatChannelType channel)
     {
 
         var isnow = false;
@@ -154,6 +151,7 @@ public class ModMain : MelonMod
 #endif
                 isnow = _atLogin;
                 break;
+
             case "hud":
                 _inHUD = !_inHUD;
 #if UNIT_TESTS
@@ -164,6 +162,7 @@ public class ModMain : MelonMod
                 _onHUDChanged();
                 isnow = _inHUD;
                 break;
+
             case "chat":
                 _toChat = !_toChat;
 #if UNIT_TESTS
@@ -173,6 +172,7 @@ public class ModMain : MelonMod
 #endif
                 isnow = _toChat;
                 break;
+
             case "terse":
                 _terse = !_terse;
 #if UNIT_TESTS
@@ -183,14 +183,16 @@ public class ModMain : MelonMod
                 _onTerseChanged();
                 isnow = _terse;
                 break;
+
             default:
-                return null;
+                MelonLogger.Error($"Unknown (toggle) command:  {option}'");
+                return;
         }
 
         Globals.GPrefs.SaveToFile(false);
 
         Utils.EchoToChat($"{option} is now {isnow}");
-        return "";
+        return;
     }
 
     // --
